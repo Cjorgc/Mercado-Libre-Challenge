@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(MutantController.class)
 public class MutantControllerTest {
     String[] dnas = {"ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"};
-    String basePath = "/api/v1/mutant";
+    String basePath = "/api/1.0/mutant";
     MutantDTO requestMutantDTO;
     StatsDTO stats;
     List<MutantDTO> mutantsDTO;
