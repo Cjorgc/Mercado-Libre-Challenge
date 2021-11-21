@@ -4,6 +4,7 @@ import com.mutant.mutantapi.dto.MutantDTO;
 import com.mutant.mutantapi.dto.StatsDTO;
 import com.mutant.mutantapi.mappers.MutantMapper;
 import com.mutant.mutantapi.model.Mutant;
+import com.mutant.mutantapi.mutantUtils.MutantValidator;
 import com.mutant.mutantapi.repository.MutantRepository;
 import com.mutant.mutantapi.mutantUtils.MutantSearchRegex;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +20,8 @@ import java.util.Optional;
 @Slf4j
 public class MutantServiceImpl implements MutantService{
 
-    @Autowired
-    MutantSearchRegex mutantSearch;
+
+    MutantSearchRegex mutantSearch = new MutantSearchRegex();
 
     @Autowired
     MutantRepository mutantRepository;
@@ -65,7 +66,9 @@ public class MutantServiceImpl implements MutantService{
 
     }
 
-   public boolean isMutant(String[] adns){
+   public boolean isMutant(String[] adns) {
+
+        if(!MutantValidator.isValidAdn(adns)) return false;
 
        StringBuilder sb = new StringBuilder();
        Arrays.stream(adns).forEach(x -> sb.append(x));

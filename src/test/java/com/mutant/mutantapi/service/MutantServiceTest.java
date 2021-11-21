@@ -63,7 +63,7 @@ public class MutantServiceTest {
 
     }
     @Test
-    public void isMutantTest(){
+    public void isMutantTest() throws Exception{
         Mockito.when(regex.isMutant(dnas)).thenReturn(true);
 
         boolean isMutant = service.isMutant(dnas);

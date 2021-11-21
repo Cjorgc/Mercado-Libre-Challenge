@@ -22,7 +22,7 @@ import static com.mutant.mutantapi.mutantUtils.GenerateRandom.generateRandom;
 
 @RestController
 @CrossOrigin
-@RequestMapping(path = "/api/v1/mutant")
+@RequestMapping(path = "/api/1.0/mutant")
 public class MutantController {
     @Autowired
     private MutantServiceImpl mutantService;

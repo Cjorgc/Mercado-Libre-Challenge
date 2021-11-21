@@ -21,7 +21,7 @@ public class Mutant {
     @Column(unique = true)
     private String dna;
 
-    @Column(name = "is_mutant")
+    @Column
     private boolean isMutant;
 
 

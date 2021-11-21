@@ -4,9 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Component
+
 @Slf4j
 public class MutantSearchRegex {
 
@@ -14,21 +15,23 @@ public class MutantSearchRegex {
 
     public boolean isMutant(String[] sequences){
         mutantCount = 0;
-        if( ! isValidArray(sequences) ) return false;
         return searchHorizontal(sequences) || searchVertical(sequences) || searchOblique(sequences) || searchContraOblique(sequences);
     }
 
-    public void search(String sequence){
-        if(Pattern.compile("(C|T|G|A)\\1{3}",Pattern.CASE_INSENSITIVE).matcher(sequence).find()) {
+    public boolean search(String sequence){
+        Pattern p = Pattern.compile("(C|T|G|A)\\1{3}",Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(sequence);
+        while(m.find()){
             mutantCount++;
             log.info("Encontrado : " + sequence);
+            if(mutantCount >= 2) return true;
         }
+        return false;
     }
 
     public boolean searchHorizontal(String[] sequences){
         for(String e : sequences){
-            search(e);
-            if(mutantCount >= 2) return true;
+            if( search(e)) return true;
         }
         return false;
     }
@@ -39,8 +42,7 @@ public class MutantSearchRegex {
                 for(int j = 0 ; j < sequences.length; j ++){
                     sequence += sequences[j].charAt(i);
                 }
-                search(sequence);
-                if(mutantCount >= 2) return true;
+                if(search(sequence)) return true;
             sequence = "";
         }
         return false;
@@ -55,8 +57,7 @@ public class MutantSearchRegex {
                  vertical < height && horizontal < width; vertical += 1, horizontal += 1) {
                 sequence += sequences[vertical].charAt(horizontal) ;
             }
-            search(sequence);
-            if(mutantCount >= 2) return true;
+            if(search(sequence)) return true;
             sequence = "";
         }
         return false;
@@ -71,27 +72,9 @@ public class MutantSearchRegex {
                  vertical < height && horizontal >= 0; vertical += 1, horizontal -= 1) {
                 sequence += sequences[vertical].charAt(horizontal) ;
             }
-            search(sequence);
-            if(mutantCount >= 2) return true;
+            if(search(sequence)) return true;
             sequence = "";
         }
         return false;
     }
-
-    public static boolean isValidArray(String[] dna) {
-        int size = dna.length;
-        if (size < 4) {
-            // La matriz como mínimo debe ser de 4X4
-            return false;
-        }
-
-        for (String line : dna) {
-            if (line.length() != size) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
 }
