@@ -18,11 +18,11 @@ Se incorporó Swagger para documentar la API, por lo que al acceder a la raiz de
 
 Mediante un cliente HTTP como Postman o Insomnia se pueden realizar estás consultas a la aplicación.
 
-GET http://desafio-meli-tpa.herokuapp.com/api/v1/mutant/ => Retorna un JSON con todos los ADN analizados
+GET https://mutant-jorgc.herokuapp.com/api/1.0/mutant/ => Retorna un JSON con todos los ADN analizados
 
-GET http://desafio-meli-tpa.herokuapp.com/api/v1/mutant/20 => Retorna un array generado aleatoriamente de 20x20
+GET https://mutant-jorgc.herokuapp.com/api/1.0/mutant/20 => Retorna un array generado aleatoriamente de 20x20
 
-POST http://desafio-meli-tpa.herokuapp.com/api/v1/mutant/ + 
+POST https://mutant-jorgc.herokuapp.com/api/1.0/mutant/ + 
 {
 "dna": 	[
 "ACCCTA",
@@ -36,7 +36,7 @@ POST http://desafio-meli-tpa.herokuapp.com/api/v1/mutant/ +
 => Status: 200
 
 
-POST http://desafio-meli-tpa.herokuapp.com/api/v1/mutant/ +
+POST https://mutant-jorgc.herokuapp.com/api/1.0/mutant/ +
 {
 "dna": 	[
 "ACCCTATG",
@@ -51,7 +51,7 @@ POST http://desafio-meli-tpa.herokuapp.com/api/v1/mutant/ +
 }
 => Status: 200
 
-POST http://desafio-meli-tpa.herokuapp.com/api/v1/mutant/ +
+POST https://mutant-jorgc.herokuapp.com/api/1.0/mutant/ +
 {
 "dna":  [
   "ATATA",
@@ -63,11 +63,11 @@ POST http://desafio-meli-tpa.herokuapp.com/api/v1/mutant/ +
 }
 => Status: 403
 
-GET http://desafio-meli-tpa.herokuapp.com/api/v1/mutant/stats => Retorna un JSON con la cantidad de mutantes analizados, humanos analizados y la proporción.
+GET https://mutant-jorgc.herokuapp.com/api/1.0/mutant/stats => Retorna un JSON con la cantidad de mutantes analizados, humanos analizados y la proporción.
 
 ### URL's del proyecto
 
-http://desafio-meli-tpa.herokuapp.com/
+https://mutant-jorgc.herokuapp.com
 
 
 
