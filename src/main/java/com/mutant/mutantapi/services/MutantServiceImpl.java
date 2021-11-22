@@ -2,6 +2,7 @@ package com.mutant.mutantapi.services;
 
 import com.mutant.mutantapi.dto.MutantDTO;
 import com.mutant.mutantapi.dto.StatsDTO;
+import com.mutant.mutantapi.exceptions.InvalidADNException;
 import com.mutant.mutantapi.mappers.MutantMapper;
 import com.mutant.mutantapi.model.Mutant;
 import com.mutant.mutantapi.mutantUtils.MutantValidator;
@@ -68,7 +69,7 @@ public class MutantServiceImpl implements MutantService{
 
    public boolean isMutant(String[] adns) {
 
-        if(!MutantValidator.isValidAdn(adns)) return false;
+        if(!MutantValidator.isValidAdn(adns)) throw new InvalidADNException("ADN invalido");
 
        StringBuilder sb = new StringBuilder();
        Arrays.stream(adns).forEach(x -> sb.append(x));

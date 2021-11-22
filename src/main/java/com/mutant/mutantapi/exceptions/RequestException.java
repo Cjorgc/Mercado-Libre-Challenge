@@ -1,11 +1,14 @@
 package com.mutant.mutantapi.exceptions;
 
-public class RequestException extends RuntimeException{
-    public RequestException(String message) {
-        super(message);
-    }
+import lombok.Builder;
+import lombok.Data;
+import org.springframework.http.HttpStatus;
 
-    public RequestException(String message, Throwable cause) {
-        super(message, cause);
-    }
+@Data
+@Builder
+public class RequestException{
+    private String message;
+    private String advice;
+    private Throwable throwable;
+    private HttpStatus httpStatus;
 }
